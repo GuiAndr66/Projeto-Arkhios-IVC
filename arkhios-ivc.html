@@ -1,0 +1,749 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARKHIOS IVC — Plataforma de Vulnerabilidade Climática Urbana</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Loading -->
+<div id="loading">
+  <div class="loading-logo">ARKHIOS IVC</div>
+  <div class="loading-bar"><div class="loading-progress"></div></div>
+  <p style="font-size:13px;color:var(--text-muted)">Carregando plataforma...</p>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    ARKHIOS IVC
+  </div>
+  <div class="nav-links">
+    <a href="#" class="active" onclick="showPage('home',this)">Início</a>
+    <a href="#" onclick="showPage('mapa',this)">Mapa</a>
+    <a href="#" onclick="showPage('metodologia',this)">Metodologia</a>
+    <a href="#" onclick="showPage('sobre',this)">Sobre</a>
+    <a href="#" onclick="showPage('contato',this)">Contato</a>
+    <a href="#" onclick="showPage('dashboard',this)">Dashboard</a>
+  </div>
+  <div class="nav-actions">
+    <button class="btn-theme" onclick="toggleTheme()" aria-label="Alternar tema" title="Alternar tema">
+      <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" class="active" onclick="showPage('home',this);toggleMenu()">Início</a>
+  <a href="#" onclick="showPage('mapa',this);toggleMenu()">Mapa</a>
+  <a href="#" onclick="showPage('metodologia',this);toggleMenu()">Metodologia</a>
+  <a href="#" onclick="showPage('sobre',this);toggleMenu()">Sobre</a>
+  <a href="#" onclick="showPage('contato',this);toggleMenu()">Contato</a>
+  <a href="#" onclick="showPage('dashboard',this);toggleMenu()">Dashboard</a>
+</div>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" id="page-home">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+    </div>
+    <div style="position:relative;z-index:1">
+      <div class="hero-badge animate-in">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Sistema IVC · Guarulhos-SP · ODS 13
+      </div>
+      <h1 class="hero-title animate-in animate-delay-1">ARKHIOS IVC</h1>
+      <p class="hero-subtitle animate-in animate-delay-2">Plataforma Inteligente de Vulnerabilidade Climática Urbana</p>
+      <p class="hero-desc animate-in animate-delay-3">Sistema desenvolvido para identificar áreas de risco climático nos bairros de Guarulhos através de dados ambientais e indicadores urbanos.</p>
+      <div class="hero-actions animate-in animate-delay-4">
+        <button class="btn btn-primary" onclick="showPage('mapa', document.querySelector('.nav-links a:nth-child(2)'))">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Explorar Mapa
+        </button>
+        <button class="btn btn-outline" onclick="showPage('sobre', document.querySelector('.nav-links a:nth-child(5)'))">
+          Conhecer o Projeto
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="hero-stats animate-in animate-delay-4">
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="47">47</div>
+          <div class="hero-stat-label">Bairros monitorados</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="12">12</div>
+          <div class="hero-stat-label">Áreas de alto risco</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">5.4</div>
+          <div class="hero-stat-label">Score médio IVC</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">ODS 13</div>
+          <div class="hero-stat-label">Alinhamento global</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- O que é o IVC -->
+  <div class="section">
+    <div class="section-label">Índice de Vulnerabilidade Climática</div>
+    <h2 class="section-title">O IVC considera 4 pilares</h2>
+    <p class="section-desc">Cada bairro recebe uma pontuação de 0 a 10 baseada em indicadores ambientais, histórico de ocorrências e dados socioeconômicos.</p>
+    <div class="grid-4">
+      <div class="card">
+        <div class="card-icon card-icon-blue">🌊</div>
+        <div class="card-title">Alagamentos</div>
+        <div class="card-desc">Histórico de eventos, cobertura de drenagem e áreas de várzea mapeadas pelos dados municipais.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:#FFF7ED;color:#C2410C;font-size:20px">🌡️</div>
+        <div class="card-title">Calor Extremo</div>
+        <div class="card-desc">Ilhas de calor urbano, cobertura vegetal, superfícies impermeáveis e temperatura média.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-yellow">⛰️</div>
+        <div class="card-title">Vulnerabilidade Territorial</div>
+        <div class="card-desc">Densidade habitacional, saneamento, declividade do terreno e infraestrutura urbana.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon card-icon-red">⚡</div>
+        <div class="card-title">Ocorrências Climáticas</div>
+        <div class="card-desc">Registros históricos de eventos extremos, ventos, tempestades e deslizamentos.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- Como funciona -->
+  <div class="section">
+    <div class="section-label">Metodologia</div>
+    <h2 class="section-title">Como o sistema funciona</h2>
+    <div class="grid-2" style="gap:32px;align-items:start">
+      <div>
+        <p style="font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:24px">O ARKHIOS IVC coleta, processa e visualiza dados de múltiplas fontes para gerar um índice compreensível e acionável de vulnerabilidade climática por bairro.</p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:14px;align-items:start">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--font-display);flex-shrink:0;font-size:14px">1</div>
+            <div><strong style="display:block;font-size:14px;margin-bottom:4px">Coleta de dados</strong><span style="font-size:13px;color:var(--text-muted)">Dados públicos municipais, ambientais e acadêmicos de Guarulhos.</span></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:start">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--font-display);flex-shrink:0;font-size:14px">2</div>
+            <div><strong style="display:block;font-size:14px;margin-bottom:4px">Processamento</strong><span style="font-size:13px;color:var(--text-muted)">Normalização e ponderação dos indicadores por categoria.</span></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:start">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--font-display);flex-shrink:0;font-size:14px">3</div>
+            <div><strong style="display:block;font-size:14px;margin-bottom:4px">Classificação</strong><span style="font-size:13px;color:var(--text-muted)">Cada bairro recebe um score IVC de 0 (baixo risco) a 10 (alto risco).</span></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:start">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--font-display);flex-shrink:0;font-size:14px">4</div>
+            <div><strong style="display:block;font-size:14px;margin-bottom:4px">Visualização</strong><span style="font-size:13px;color:var(--text-muted)">Mapa interativo com cores e dados detalhados por bairro.</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="background:var(--surface);padding:28px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+            <span style="font-family:var(--font-display);font-size:15px;font-weight:700">Distribuição de Risco</span>
+            <span style="font-size:12px;color:var(--text-muted)">47 bairros</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                <span style="font-size:13px;font-weight:600;color:var(--success)">🟢 Baixo Risco</span>
+                <span style="font-size:13px;font-weight:700;color:var(--text)">18 bairros</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill progress-low" style="width:38%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                <span style="font-size:13px;font-weight:600;color:#D97706">🟡 Médio Risco</span>
+                <span style="font-size:13px;font-weight:700;color:var(--text)">17 bairros</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill progress-med" style="width:36%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                <span style="font-size:13px;font-weight:600;color:var(--danger)">🔴 Alto Risco</span>
+                <span style="font-size:13px;font-weight:700;color:var(--text)">12 bairros</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill progress-high" style="width:26%"></div></div>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-top:24px;justify-content:center" onclick="showPage('mapa',null)">
+            Ver no Mapa →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quem usa -->
+  <div style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="section">
+      <div class="section-label">Público-Alvo</div>
+      <h2 class="section-title">Decisões mais inteligentes para todos</h2>
+      <div class="grid-4">
+        <div class="card" style="text-align:center">
+          <div style="font-size:36px;margin-bottom:12px">🏠</div>
+          <div class="card-title">Moradores</div>
+          <div class="card-desc">Conheça os riscos do seu bairro e tome decisões informadas sobre onde morar.</div>
+        </div>
+        <div class="card" style="text-align:center">
+          <div style="font-size:36px;margin-bottom:12px">🏢</div>
+          <div class="card-title">Empresas</div>
+          <div class="card-desc">Avalie riscos climáticos antes de instalar operações em determinadas regiões.</div>
+        </div>
+        <div class="card" style="text-align:center">
+          <div style="font-size:36px;margin-bottom:12px">📊</div>
+          <div class="card-title">Corretores</div>
+          <div class="card-desc">Ofereça dados climáticos confiáveis para clientes na compra de imóveis.</div>
+        </div>
+        <div class="card" style="text-align:center">
+          <div style="font-size:36px;margin-bottom:12px">🏛️</div>
+          <div class="card-title">Prefeitura</div>
+          <div class="card-desc">Priorize investimentos em infraestrutura nas áreas de maior vulnerabilidade.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section" style="text-align:center;max-width:600px">
+    <div class="section-label">Comece agora</div>
+    <h2 class="section-title">Explore o mapa de Guarulhos</h2>
+    <p class="section-desc" style="margin:0 auto 32px">Clique em qualquer bairro para ver seu índice de vulnerabilidade, indicadores detalhados e histórico climático.</p>
+    <button class="btn btn-primary" onclick="showPage('mapa',null)" style="font-size:16px;padding:14px 32px">
+      Abrir Mapa Interativo →
+    </button>
+  </div>
+
+  <footer>
+    <div class="footer-logo">ARKHIOS IVC</div>
+    <div class="footer-sub">Plataforma Inteligente de Vulnerabilidade Climática Urbana — Guarulhos-SP</div>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('home',null)">Início</a>
+      <a href="#" onclick="showPage('mapa',null)">Mapa</a>
+      <a href="#" onclick="showPage('metodologia',null)">Metodologia</a>
+      <a href="#" onclick="showPage('sobre',null)">Sobre</a>
+      <a href="#" onclick="showPage('contato',null)">Contato</a>
+      <a href="#" onclick="showPage('dashboard',null)">Dashboard</a>
+    </div>
+    <div class="ods-tag">🌍 ODS 13 — Ação Contra a Mudança Global do Clima</div>
+    <div class="footer-copy" style="margin-top:12px">© 2025 ARKHIOS IVC · Dados para fins educacionais · Projeto Experimenta GRU</div>
+  </footer>
+</div>
+
+<!-- ===== MAPA PAGE ===== -->
+<div class="page" id="page-mapa">
+  <div class="map-layout">
+    <!-- Sidebar -->
+    <div class="map-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Bairros de Guarulhos</div>
+        <div class="search-box">
+          <span class="search-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </span>
+          <input type="text" id="search-bairros" placeholder="Buscar bairro..." oninput="filterBairros()">
+        </div>
+        <div class="filter-row">
+          <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">Todos</button>
+          <button class="filter-btn f-low" data-filter="low" onclick="setFilter('low',this)">🟢 Baixo</button>
+          <button class="filter-btn f-med" data-filter="med" onclick="setFilter('med',this)">🟡 Médio</button>
+          <button class="filter-btn f-high" data-filter="high" onclick="setFilter('high',this)">🔴 Alto</button>
+        </div>
+      </div>
+      <div class="bairro-list" id="bairro-list"></div>
+    </div>
+    <!-- Map -->
+<div class="map-container" id="map-container">
+  <div class="map-tooltip" id="map-tooltip">
+    <div class="tooltip-name" id="tt-name">Bairro</div>
+    <div class="tooltip-score" id="tt-score">IVC Score: --</div>
+    <div id="tt-badge" class="tooltip-badge">--</div>
+  </div>
+
+  <svg class="map-svg" id="guarulhos-map" viewBox="0 0 990 990" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa dos bairros administrativos de Guarulhos com pontos de risco IVC">
+    
+    <rect class="map-backdrop" width="990" height="990"/>
+
+    <image
+      class="map-reference-image"
+      href="mapa_guarulhos.png"
+      x="0"
+      y="0"
+      width="990"
+      height="990"
+      preserveAspectRatio="xMidYMid meet"
+    />
+
+    <g id="map-district-overlay" aria-hidden="true"></g>
+    <g id="svg-bairros"></g>
+
+    <text class="map-credit" x="28" y="956">
+      Base: bairros administrativos de Guarulhos
+    </text>
+
+  </svg>
+
+  <div class="map-legend">
+    <div class="legend-title">Classificação IVC</div>
+
+    <div class="legend-item">
+      <div class="risk-dot risk-low"></div>
+      Baixo risco (0–3.9)
+    </div>
+
+    <div class="legend-item">
+      <div class="risk-dot risk-med"></div>
+      Médio risco (4.0–6.9)
+    </div>
+
+    <div class="legend-item">
+      <div class="risk-dot risk-high"></div>
+      Alto risco (7.0–10)
+    </div>
+  </div>
+</div>
+  </div><!-- end map-layout -->
+</div><!-- end page-mapa -->
+
+<!-- ===== BAIRRO PAGE ===== -->
+<div class="page" id="page-bairro">
+  <div class="bairro-hero" id="bairro-hero-content">
+    <div style="max-width:1200px;margin:0 auto">
+      <button class="back-btn" onclick="showPage('mapa',null)">
+        ← Voltar ao Mapa
+      </button>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:start">
+        <div>
+          <div class="bairro-score-big" id="bairro-score-display">7.8</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px">Score IVC</div>
+        </div>
+        <div>
+          <div id="bairro-badge-display" class="badge-pill badge-high" style="margin-bottom:12px">🔴 Alto Risco</div>
+          <h1 id="bairro-name-display" style="font-family:var(--font-display);font-size:clamp(24px,5vw,40px);font-weight:700;color:var(--text);margin-bottom:8px">Pimentas</h1>
+          <p id="bairro-desc-display" style="font-size:15px;color:var(--text-muted);max-width:600px;line-height:1.7">Bairro localizado na zona leste de Guarulhos com histórico significativo de alagamentos e pressão urbana intensa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="grid-2" style="gap:32px;align-items:start">
+        <div>
+          <h2 style="font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:24px">Indicadores de Risco</h2>
+          <div id="bairro-indicators"></div>
+        </div>
+        <div>
+          <h2 style="font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:24px">Histórico Climático</h2>
+          <div class="card" style="margin-bottom:16px">
+            <div id="bairro-historico" style="display:flex;flex-direction:column;gap:12px"></div>
+          </div>
+          <div class="card">
+            <h3 style="font-family:var(--font-display);font-size:15px;font-weight:600;margin-bottom:12px">Dados Gerais</h3>
+            <div id="bairro-dados" style="display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--text-muted)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-logo">ARKHIOS IVC</div>
+    <div class="footer-sub">Dados para fins educacionais · 2025</div>
+    <div class="footer-copy" style="margin-top:8px">© 2025 ARKHIOS IVC</div>
+  </footer>
+</div>
+
+<!-- ===== METODOLOGIA PAGE ===== -->
+<div class="page" id="page-metodologia">
+  <div class="section">
+    <div class="section-label">Como calculamos</div>
+    <h1 class="section-title">Metodologia do IVC</h1>
+    <p class="section-desc">O Índice de Vulnerabilidade Climática é calculado com base em quatro dimensões principais, ponderadas de acordo com sua relevância para o contexto urbano de Guarulhos.</p>
+  </div>
+  <div class="section-divider"></div>
+  <div class="section">
+    <div class="grid-2" style="gap:60px;align-items:start">
+      <div>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:32px">Fórmula do IVC</h2>
+        <div style="background:var(--surface);border:1.5px solid var(--accent);border-radius:var(--radius-lg);padding:24px;margin-bottom:32px">
+          <div style="font-family:monospace;font-size:15px;color:var(--text);line-height:2">
+            <div style="color:var(--text-muted);font-size:12px;margin-bottom:8px;font-family:var(--font-body)">IVC = soma ponderada dos indicadores</div>
+            IVC = (0.30 × <span style="color:var(--accent)">A</span>) + (0.25 × <span style="color:#EA580C">C</span>) +<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0.25 × <span style="color:var(--warning)">V</span>) + (0.20 × <span style="color:var(--danger)">O</span>)
+          </div>
+          <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px">
+            <div><span style="color:var(--accent);font-weight:700">A</span> = Alagamento (30%)</div>
+            <div><span style="color:#EA580C;font-weight:700">C</span> = Calor (25%)</div>
+            <div><span style="color:var(--warning);font-weight:700">V</span> = Vuln. Territorial (25%)</div>
+            <div><span style="color:var(--danger);font-weight:700">O</span> = Ocorrências (20%)</div>
+          </div>
+        </div>
+        <div class="steps-timeline">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-title">Coleta de Dados</div>
+            <div class="step-desc">Dados são coletados de fontes públicas municipais, relatórios da Defesa Civil, IBGE e dados acadêmicos sobre Guarulhos.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-title">Normalização</div>
+            <div class="step-desc">Cada indicador é normalizado em uma escala de 0 a 10, considerando valores mínimos e máximos da região.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-title">Ponderação</div>
+            <div class="step-desc">Os pesos são definidos com base na literatura científica e na relevância histórica de cada fator para o município.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-title">Classificação</div>
+            <div class="step-desc">Score 0–3.9 = Baixo, 4.0–6.9 = Médio, 7.0–10 = Alto risco climático.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-title">Atualização</div>
+            <div class="step-desc">Os dados são revisados periodicamente com novas ocorrências e atualizações das fontes.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:24px">Fontes de Dados</h2>
+        <div class="source-grid" style="grid-template-columns:1fr">
+          <div class="source-item">
+            <strong>Prefeitura de Guarulhos</strong>
+            Mapas de drenagem, áreas de risco, histórico de atendimentos da Defesa Civil.
+          </div>
+          <div class="source-item">
+            <strong>IBGE — Instituto Brasileiro de Geografia e Estatística</strong>
+            Dados demográficos, uso do solo, saneamento básico e densidade populacional.
+          </div>
+          <div class="source-item">
+            <strong>INMET — Instituto Nacional de Meteorologia</strong>
+            Séries históricas de temperatura, precipitação e eventos climáticos extremos.
+          </div>
+          <div class="source-item">
+            <strong>Defesa Civil do Estado de SP</strong>
+            Registros de deslizamentos, alagamentos e ocorrências por região.
+          </div>
+          <div class="source-item">
+            <strong>Dados Acadêmicos e Simulados</strong>
+            Indicadores complementares utilizados para fins educacionais neste projeto.
+          </div>
+        </div>
+        <div style="margin-top:24px;padding:16px;background:var(--warning-soft);border:1px solid rgba(250,204,21,0.3);border-radius:var(--radius-md)">
+          <div style="font-size:13px;font-weight:600;color:#B45309;margin-bottom:4px">⚠️ Aviso Importante</div>
+          <div style="font-size:13px;color:#92400E;line-height:1.6">Este sistema foi desenvolvido para fins educacionais como parte do Projeto Experimenta GRU. Os dados incluem informações simuladas e não substituem análises técnicas oficiais.</div>
+        </div>
+        <div class="card" style="margin-top:20px">
+          <h3 style="font-family:var(--font-display);font-size:15px;font-weight:600;margin-bottom:16px">Pesos por Categoria</h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:13px;font-weight:600">Alagamento</span><span style="font-size:13px;color:var(--accent);font-weight:700">30%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:30%;background:var(--accent)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:13px;font-weight:600">Calor Extremo</span><span style="font-size:13px;color:#EA580C;font-weight:700">25%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:25%;background:#EA580C"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:13px;font-weight:600">Vulnerabilidade Territorial</span><span style="font-size:13px;color:#D97706;font-weight:700">25%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:25%;background:var(--warning)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:13px;font-weight:600">Ocorrências Climáticas</span><span style="font-size:13px;color:var(--danger);font-weight:700">20%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:20%;background:var(--danger)"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-logo">ARKHIOS IVC</div>
+    <div class="footer-sub">Metodologia científica aplicada ao contexto urbano</div>
+    <div class="footer-copy" style="margin-top:8px">© 2025 ARKHIOS IVC · Dados para fins educacionais</div>
+  </footer>
+</div>
+
+<!-- ===== SOBRE PAGE ===== -->
+<div class="page" id="page-sobre">
+  <div class="section">
+    <div class="about-hero">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;margin-bottom:12px">Sobre o Projeto</div>
+      <h2>O que é o ARKHIOS IVC?</h2>
+      <p>Uma plataforma tecnológica de monitoramento climático urbano desenvolvida para identificar, classificar e visualizar áreas de vulnerabilidade nos bairros de Guarulhos-SP.</p>
+    </div>
+    <div class="grid-2" style="gap:40px;align-items:start;margin-bottom:48px">
+      <div>
+        <div class="section-label" style="margin-bottom:12px">Nossa Missão</div>
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;margin-bottom:16px;color:var(--text)">Inteligência climática para cidades mais resilientes</h2>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:16px">O ARKHIOS IVC nasce da necessidade de democratizar o acesso a informações climáticas confiáveis e traduzir dados complexos em ferramentas práticas para tomada de decisão.</p>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8">Com base nos Objetivos de Desenvolvimento Sustentável da ONU, especificamente o ODS 13, a plataforma contribui para a ação climática local com foco em adaptação e redução de riscos.</p>
+      </div>
+      <div class="ods-card">
+        <div class="ods-badge">ODS<br>13</div>
+        <div>
+          <h3 style="font-family:var(--font-display);font-size:17px;font-weight:700;margin-bottom:8px">ODS 13 — Ação Contra a Mudança Global do Clima</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:12px">Tomar medidas urgentes para combater a mudança climática e seus impactos, fortalecendo a capacidade adaptativa e reduzindo vulnerabilidades.</p>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="font-size:13px;color:var(--text-muted);display:flex;gap:8px"><span style="color:var(--success)">✓</span>Identificação de áreas vulneráveis</div>
+            <div style="font-size:13px;color:var(--text-muted);display:flex;gap:8px"><span style="color:var(--success)">✓</span>Educação e conscientização climática</div>
+            <div style="font-size:13px;color:var(--text-muted);display:flex;gap:8px"><span style="color:var(--success)">✓</span>Suporte à gestão pública local</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div style="padding-top:48px">
+      <div class="section-label" style="margin-bottom:12px">Benefícios por Público</div>
+      <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;margin-bottom:32px">Quem se beneficia do ARKHIOS IVC?</h2>
+      <div class="beneficiarios-grid">
+        <div class="beneficiario-card">
+          <div class="beneficiario-icon">🏠</div>
+          <div class="beneficiario-title">Moradores</div>
+          <div class="beneficiario-desc">Acesso a informações sobre riscos climáticos do bairro antes de alugar ou comprar um imóvel. Conhecimento para se preparar para eventos extremos.</div>
+        </div>
+        <div class="beneficiario-card">
+          <div class="beneficiario-icon">🏢</div>
+          <div class="beneficiario-title">Corretores Imobiliários</div>
+          <div class="beneficiario-desc">Dados climáticos para fundamentar avaliações de imóveis, aumentar a transparência nas transações e orientar compradores com mais precisão.</div>
+        </div>
+        <div class="beneficiario-card">
+          <div class="beneficiario-icon">💼</div>
+          <div class="beneficiario-title">Investidores</div>
+          <div class="beneficiario-desc">Análise de risco climático para investimentos imobiliários e empresariais, reduzindo exposição a áreas de alta vulnerabilidade.</div>
+        </div>
+        <div class="beneficiario-card">
+          <div class="beneficiario-icon">🏭</div>
+          <div class="beneficiario-title">Empresas</div>
+          <div class="beneficiario-desc">Planejamento de instalações considerando riscos de alagamento, interrupções logísticas e impactos de eventos climáticos extremos.</div>
+        </div>
+        <div class="beneficiario-card">
+          <div class="beneficiario-icon">🏛️</div>
+          <div class="beneficiario-title">Prefeitura</div>
+          <div class="beneficiario-desc">Base de dados para priorizar investimentos em obras de drenagem, contenção de encostas e infraestrutura de adaptação climática.</div>
+        </div>
+        <div class="beneficiario-card">
+          <div class="beneficiario-icon">🎓</div>
+          <div class="beneficiario-title">Pesquisadores</div>
+          <div class="beneficiario-desc">Plataforma de visualização e análise de dados para estudos sobre vulnerabilidade climática urbana e efetividade de políticas públicas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-logo">ARKHIOS IVC</div>
+    <div class="footer-sub">Desenvolvido para TCC dos DIVOS DE DS</div>
+    <div class="ods-tag">🌍 ODS 13 — Ação Contra a Mudança Global do Clima</div>
+    <div class="footer-copy" style="margin-top:12px">© 2025 ARKHIOS IVC · Todos os direitos reservados</div>
+  </footer>
+</div>
+
+<!-- ===== CONTATO PAGE ===== -->
+<div class="page" id="page-contato">
+  <div class="section">
+    <div class="section-label">Fale Conosco</div>
+    <h1 class="section-title">Entre em Contato</h1>
+    <p class="section-desc">Tem dúvidas, sugestões ou quer contribuir com o projeto? Entre em contato com nossa equipe.</p>
+    <div class="contact-layout">
+      <div>
+        <div class="form-group">
+          <label class="form-label">Nome completo</label>
+          <input type="text" class="form-input" id="contact-name" placeholder="Seu nome">
+        </div>
+        <div class="form-group">
+          <label class="form-label">E-mail</label>
+          <input type="email" class="form-input" id="contact-email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Assunto</label>
+          <select class="form-input" id="contact-subject">
+            <option value="">Selecione um assunto</option>
+            <option>Dúvida sobre metodologia</option>
+            <option>Sugestão de melhoria</option>
+            <option>Parceria institucional</option>
+            <option>Dados incorretos</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensagem</label>
+          <textarea class="form-input" id="contact-message" placeholder="Escreva sua mensagem aqui..."></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="submitForm()" style="width:100%;justify-content:center">
+          Enviar Mensagem →
+        </button>
+        <div class="form-feedback" id="form-feedback">
+          <span>✅</span> Mensagem enviada com sucesso! Retornaremos em breve.
+        </div>
+      </div>
+      <div class="contact-info">
+        <div style="font-family:var(--font-display);font-size:18px;font-weight:700;margin-bottom:16px">Informações de Contato</div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div class="contact-info-text">
+            <strong>Localização</strong>
+            Guarulhos — São Paulo, Brasil
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">🎓</div>
+          <div class="contact-info-text">
+            <strong>Projeto</strong>
+            Experimenta GRU 2025
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">🌍</div>
+          <div class="contact-info-text">
+            <strong>Alinhamento</strong>
+            ODS 13 — Ação Climática
+          </div>
+        </div>
+        <div style="margin-top:8px;padding:20px;background:var(--accent-soft);border:1px solid rgba(37,99,235,0.15);border-radius:var(--radius-lg)">
+          <div style="font-size:14px;font-weight:600;color:var(--accent);margin-bottom:8px">💡 Sobre o ARKHIOS IVC</div>
+          <div style="font-size:13px;color:var(--text-muted);line-height:1.6">Este é um projeto educacional desenvolvido para demonstrar o uso de tecnologia na análise de vulnerabilidade climática urbana. Os dados são parcialmente simulados.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-logo">ARKHIOS IVC</div>
+    <div class="footer-sub">Guarulhos-SP · Projeto Experimenta GRU</div>
+    <div class="footer-copy" style="margin-top:8px">© 2025 ARKHIOS IVC</div>
+  </footer>
+</div>
+
+<!-- ===== DASHBOARD PAGE ===== -->
+<div class="page" id="page-dashboard">
+  <div class="section">
+    <div style="display:flex;align-items:start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px">
+      <div>
+        <div class="section-label">Painel Administrativo</div>
+        <h1 style="font-family:var(--font-display);font-size:clamp(22px,4vw,32px);font-weight:700;color:var(--text)">Dashboard ARKHIOS IVC</h1>
+        <p style="font-size:14px;color:var(--text-muted);margin-top:4px">Última atualização: Junho 2025 · Dados simulados para fins educacionais</p>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulse 2s infinite"></div>
+        <span style="font-size:13px;color:var(--text-muted)">Sistema ativo</span>
+      </div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Bairros Monitorados</div>
+        <div class="stat-value" id="count-bairros">0</div>
+        <div class="stat-change up">↑ 5 este mês</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Alto Risco</div>
+        <div class="stat-value" id="count-alto" style="color:var(--danger)">0</div>
+        <div class="stat-change">25.5% do total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Score Médio IVC</div>
+        <div class="stat-value" id="avg-score">0</div>
+        <div class="stat-change down">↓ 0.3 este trimestre</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Baixo Risco</div>
+        <div class="stat-value" id="count-baixo" style="color:var(--success)">0</div>
+        <div class="stat-change up">↑ 2 novas áreas</div>
+      </div>
+    </div>
+    <div class="grid-2" style="gap:20px;margin-bottom:20px">
+      <div class="chart-container">
+        <div class="chart-title">Score IVC por Bairro</div>
+        <div class="chart-subtitle">Top 10 bairros com maior vulnerabilidade</div>
+        <div class="bar-chart" id="bar-chart"></div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Distribuição de Risco</div>
+        <div class="chart-subtitle">Proporção de bairros por classificação</div>
+        <div class="donut-section">
+          <svg viewBox="0 0 160 160" style="width:160px;height:160px;flex-shrink:0">
+            <circle cx="80" cy="80" r="62" fill="none" stroke="var(--danger)" stroke-width="24" stroke-dasharray="98 291" stroke-dashoffset="0"/>
+            <circle cx="80" cy="80" r="62" fill="none" stroke="var(--warning)" stroke-width="24" stroke-dasharray="106 291" stroke-dashoffset="-98"/>
+            <circle cx="80" cy="80" r="62" fill="none" stroke="var(--success)" stroke-width="24" stroke-dasharray="116 291" stroke-dashoffset="-204"/>
+            <text x="80" y="76" text-anchor="middle" font-family="Space Grotesk" font-size="20" font-weight="700" fill="var(--text)">47</text>
+            <text x="80" y="94" text-anchor="middle" font-family="DM Sans" font-size="10" fill="var(--text-muted)">bairros</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="donut-item"><div class="donut-dot" style="background:var(--success)"></div><div class="donut-text"><div class="donut-name">Baixo Risco</div><div class="donut-pct">18 bairros · 38%</div></div></div>
+            <div class="donut-item"><div class="donut-dot" style="background:var(--warning)"></div><div class="donut-text"><div class="donut-name">Médio Risco</div><div class="donut-pct">17 bairros · 36%</div></div></div>
+            <div class="donut-item"><div class="donut-dot" style="background:var(--danger)"></div><div class="donut-text"><div class="donut-name">Alto Risco</div><div class="donut-pct">12 bairros · 26%</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-container">
+      <div class="chart-title">Indicadores Médios por Categoria</div>
+      <div class="chart-subtitle">Média de todos os bairros monitorados</div>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px">
+        <div class="indicator-bar">
+          <div class="indicator-label"><span class="indicator-name">🌊 Alagamento</span><span class="indicator-val" style="color:var(--danger)">7.2</span></div>
+          <div class="progress-track"><div class="progress-fill progress-high" style="width:72%"></div></div>
+          <div class="indicator-desc">Principal fator de risco em Guarulhos — rede de drenagem com capacidade insuficiente</div>
+        </div>
+        <div class="indicator-bar">
+          <div class="indicator-label"><span class="indicator-name">🌡️ Calor Extremo</span><span class="indicator-val" style="color:#D97706">5.9</span></div>
+          <div class="progress-track"><div class="progress-fill progress-med" style="width:59%"></div></div>
+          <div class="indicator-desc">Ilhas de calor identificadas nas regiões centrais e industriais</div>
+        </div>
+        <div class="indicator-bar">
+          <div class="indicator-label"><span class="indicator-name">⛰️ Vulnerabilidade Territorial</span><span class="indicator-val" style="color:#D97706">5.1</span></div>
+          <div class="progress-track"><div class="progress-fill progress-med" style="width:51%"></div></div>
+          <div class="indicator-desc">Ocupação em áreas de encosta e margens de córregos</div>
+        </div>
+        <div class="indicator-bar">
+          <div class="indicator-label"><span class="indicator-name">⚡ Ocorrências Climáticas</span><span class="indicator-val" style="color:var(--success)">4.3</span></div>
+          <div class="progress-track"><div class="progress-fill progress-low" style="width:43%"></div></div>
+          <div class="indicator-desc">Registros de ocorrências climáticas com tendência de redução</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-logo">ARKHIOS IVC</div>
+    <div class="footer-sub">Painel administrativo · Dados simulados</div>
+    <div class="footer-copy" style="margin-top:8px">© 2025 ARKHIOS IVC</div>
+  </footer>
+</div>
+<div class="accessibility-widget" id="a11y-widget">
+  <button class="a11y-toggle" onclick="toggleA11yMenu()" aria-label="Menu de Acessibilidade">
+    <svg viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+  </button>
+  <div class="a11y-menu" id="a11y-menu">
+    <button class="a11y-btn" onclick="toggleFontSize()">
+      <svg viewBox="0 0 24 24"><path d="M9 4v3h5v12h3V7h5V4H9zm-6 8v3h3v6h3v-6h3v-3H3z"/></svg>
+      Aumentar Letra
+    </button>
+    <button class="a11y-btn" onclick="toggleSpeech()" id="btn-speech">
+      <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      Ler em Voz Alta
+    </button>
+  </div>
+</div>
+<script src="script.js" defer></script>
+</body>
+</html>
+
+

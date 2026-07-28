@@ -180,14 +180,30 @@ nav {
   flex-shrink: 0;
   border-radius: 8px;
   background: transparent;
+  overflow: hidden;
 }
 
-.nav-logo-icon svg {
-  width: 17px;
-  height: 17px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
+.theme-logo {
+  width: 100%;
+  height: 100%;
+  grid-area: 1 / 1;
+  object-fit: cover;
+  transform: scale(3.15);
+  transform-origin: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.theme-logo-dark {
+  display: none;
+}
+
+[data-theme="dark"] .theme-logo-light {
+  display: none;
+}
+
+[data-theme="dark"] .theme-logo-dark {
+  display: block;
 }
 
 .nav-links {
@@ -298,7 +314,7 @@ nav {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(80px, 12vw, 140px) 24px clamp(64px, 9vw, 100px);
+  padding: clamp(32px, 6vw, 70px) 24px clamp(64px, 9vw, 100px);
   text-align: center;
 }
 
@@ -317,11 +333,22 @@ nav {
 
 .hero-bg { display: none; }
 
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 980px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin-bottom: 28px;
+  margin: 0 auto 24px;
   padding: 6px 13px;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -338,17 +365,37 @@ nav {
   color: var(--accent);
 }
 
+.hero-logo {
+  width: clamp(104px, 13vw, 144px);
+  height: clamp(104px, 13vw, 144px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  margin: 0 auto 10px;
+  border-radius: 28px;
+  background: transparent;
+}
+
+.hero-logo .theme-logo {
+  transform: scale(2.85);
+}
+
 .hero-title {
-  max-width: 900px;
-  margin: 0 auto 16px;
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto 14px;
   color: var(--text);
-  font-size: clamp(48px, 10vw, 96px);
+  font-size: clamp(50px, 9.5vw, 100px);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.95;
+  text-align: center;
 }
 
 .hero-subtitle {
+  width: min(100%, 760px);
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 20px;
   color: var(--text-muted);
   font-size: clamp(17px, 2.5vw, 22px);
@@ -366,6 +413,7 @@ nav {
 
 .hero-desc {
   margin: 0 auto 36px;
+  text-align: center;
 }
 
 .hero-actions {
@@ -1699,7 +1747,7 @@ html.a11y-large-text p { font-size: 120%; }
 
   .map-legend { right: 10px; bottom: 10px; left: auto; }
 
-  .hero { padding: 72px 18px 48px; }
+  .hero { padding: 34px 18px 48px; }
   .hero-title { font-size: clamp(38px, 13vw, 60px); }
   .hero-stats { border-radius: var(--radius-md); margin-top: 40px; }
   .hero-stat { padding: 14px 12px; }

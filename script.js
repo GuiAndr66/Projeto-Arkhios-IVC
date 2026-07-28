@@ -9,7 +9,9 @@ function debounce(func, wait) {
   };
 }
 
-const bairros = [
+const bairros = [];
+
+const legacyBairros = [
   {
     id: "pimentas",
     nome: "Pimentas",
@@ -254,22 +256,80 @@ const bairros = [
   }
 ];
 
+const officialBairroBase = [
+  { numero: 0, id: "aeroporto", nome: "Aeroporto", score: 2.8, risco: "low", pop: "708", coords: { x: 397, y: 607 } },
+  { numero: 1, id: "agua-azul", nome: "Água Azul", score: 3.4, risco: "low", pop: "2.200", coords: { x: 700, y: 368 } },
+  { numero: 2, id: "agua-chata", nome: "Água Chata", score: 3.5, risco: "low", pop: "22.978", coords: { x: 731, y: 633 } },
+  { numero: 3, id: "aracilia", nome: "Aracília", score: 3.9, risco: "low", pop: "2.239", coords: { x: 816, y: 599 } },
+  { numero: 4, id: "bananal", nome: "Bananal", score: 5.7, risco: "med", pop: "41.168", coords: { x: 529, y: 438 } },
+  { numero: 5, id: "bela-vista", nome: "Bela Vista", score: 4.8, risco: "med", pop: "19.248", coords: { x: 257, y: 660 } },
+  { numero: 6, id: "bom-clima", nome: "Bom Clima", score: 3.8, risco: "low", pop: "10.255", coords: { x: 286, y: 711 } },
+  { numero: 7, id: "bonsucesso", nome: "Bonsucesso", score: 7.7, risco: "high", pop: "101.011", coords: { x: 681, y: 563 } },
+  { numero: 8, id: "cabucu", nome: "Cabuçu", score: 7.0, risco: "high", pop: "78.035", coords: { x: 222, y: 484 } },
+  { numero: 9, id: "cabucu-de-cima", nome: "Cabuçu de Cima", score: 3.6, risco: "low", pop: "N/D", coords: { x: 279, y: 405 } },
+  { numero: 10, id: "capelinha", nome: "Capelinha", score: 3.1, risco: "low", pop: "43", coords: { x: 608, y: 342 } },
+  { numero: 11, id: "cecap", nome: "CECAP", score: 5.4, risco: "med", pop: "10.002", coords: { x: 550, y: 630 } },
+  { numero: 12, id: "centro", nome: "Centro", score: 7.1, risco: "high", pop: "24.655", coords: { x: 190, y: 760 } },
+  { numero: 13, id: "cocaia", nome: "Cocaia", score: 7.0, risco: "high", pop: "25.426", coords: { x: 265, y: 630 } },
+  { numero: 14, id: "cumbica", nome: "Cumbica", score: 7.9, risco: "high", pop: "88.150", coords: { x: 483, y: 697 } },
+  { numero: 15, id: "fortaleza", nome: "Fortaleza", score: 6.4, risco: "med", pop: "14.981", coords: { x: 145, y: 602 } },
+  { numero: 16, id: "fatima", nome: "Fátima", score: 5.8, risco: "med", pop: "14.680", coords: { x: 250, y: 700 } },
+  { numero: 17, id: "gopouva", nome: "Gopoúva", score: 7.0, risco: "high", pop: "26.399", coords: { x: 280, y: 765 } },
+  { numero: 18, id: "invernada", nome: "Invernada", score: 5.0, risco: "med", pop: "14.505", coords: { x: 232, y: 690 } },
+  { numero: 19, id: "itapegica", nome: "Itapegica", score: 5.2, risco: "med", pop: "19.328", coords: { x: 105, y: 792 } },
+  { numero: 20, id: "jardim-vila-galvao", nome: "Jardim Vila Galvão", score: 4.6, risco: "med", pop: "15.804", coords: { x: 101, y: 742 } },
+  { numero: 21, id: "lavras", nome: "Lavras", score: 3.0, risco: "low", pop: "17.759", coords: { x: 568, y: 549 } },
+  { numero: 22, id: "macedo", nome: "Macedo", score: 7.2, risco: "high", pop: "23.219", coords: { x: 250, y: 780 } },
+  { numero: 23, id: "maia", nome: "Maia", score: 4.4, risco: "med", pop: "5.284", coords: { x: 206, y: 761 } },
+  { numero: 24, id: "mato-das-cobras", nome: "Mato das Cobras", score: 5.6, risco: "med", pop: "12.355", coords: { x: 658, y: 446 } },
+  { numero: 25, id: "monte-carmelo", nome: "Monte Carmelo", score: 3.9, risco: "low", pop: "5.911", coords: { x: 315, y: 742 } },
+  { numero: 26, id: "morro-grande", nome: "Morro Grande", score: 2.9, risco: "low", pop: "335", coords: { x: 770, y: 245 } },
+  { numero: 27, id: "morros", nome: "Morros", score: 5.9, risco: "med", pop: "40.888", coords: { x: 382, y: 492 } },
+  { numero: 28, id: "paraventi", nome: "Paraventi", score: 4.5, risco: "med", pop: "11.071", coords: { x: 282, y: 800 } },
+  { numero: 29, id: "picanco", nome: "Picanço", score: 5.3, risco: "med", pop: "53.313", coords: { x: 249, y: 731 } },
+  { numero: 30, id: "pimentas", nome: "Pimentas", score: 8.7, risco: "high", pop: "168.232", coords: { x: 650, y: 716 } },
+  { numero: 31, id: "ponte-grande", nome: "Ponte Grande", score: 3.8, risco: "low", pop: "25.562", coords: { x: 217, y: 797 } },
+  { numero: 32, id: "porto-da-igreja", nome: "Porto da Igreja", score: 3.2, risco: "low", pop: "45", coords: { x: 137, y: 845 } },
+  { numero: 33, id: "presidente-dutra", nome: "Presidente Dutra", score: 6.2, risco: "med", pop: "44.017", coords: { x: 576, y: 591 } },
+  { numero: 34, id: "sadokim", nome: "Sadokim", score: 5.1, risco: "med", pop: "9.487", coords: { x: 781, y: 544 } },
+  { numero: 35, id: "sao-joao", nome: "São João", score: 7.3, risco: "high", pop: "70.752", coords: { x: 540, y: 509 } },
+  { numero: 36, id: "sao-roque", nome: "São Roque", score: 3.7, risco: "low", pop: "2.182", coords: { x: 169, y: 798 } },
+  { numero: 37, id: "taboao", nome: "Taboão", score: 7.2, risco: "high", pop: "75.737", coords: { x: 317, y: 552 } },
+  { numero: 38, id: "tanque-grande", nome: "Tanque Grande", score: 3.3, risco: "low", pop: "149", coords: { x: 463, y: 403 } },
+  { numero: 39, id: "torres-tibagy", nome: "Torres Tibagy", score: 3.7, risco: "low", pop: "18.874", coords: { x: 170, y: 724 } },
+  { numero: 40, id: "tranquilidade", nome: "Tranquilidade", score: 3.6, risco: "low", pop: "5.223", coords: { x: 151, y: 779 } },
+  { numero: 41, id: "varzea-do-palacio", nome: "Várzea do Palácio", score: 4.9, risco: "med", pop: "4.137", coords: { x: 450, y: 570 } },
+  { numero: 42, id: "vila-any", nome: "Vila Any", score: 3.4, risco: "low", pop: "29.158", coords: { x: 722, y: 782 } },
+  { numero: 43, id: "vila-augusta", nome: "Vila Augusta", score: 3.9, risco: "low", pop: "35.319", coords: { x: 300, y: 670 } },
+  { numero: 44, id: "vila-barros", nome: "Vila Barros", score: 5.6, risco: "med", pop: "18.247", coords: { x: 289, y: 666 } },
+  { numero: 45, id: "vila-galvao", nome: "Vila Galvão", score: 7.4, risco: "high", pop: "32.853", coords: { x: 90, y: 687 } },
+  { numero: 46, id: "vila-rio", nome: "Vila Rio", score: 7.0, risco: "high", pop: "49.605", coords: { x: 146, y: 667 } }
+];
+
+function buildOfficialIndicators(score) {
+  const clamp = (value) => Math.max(0, Math.min(10, Number(value.toFixed(1))));
+  return {
+    alagamento: clamp(score + 0.3),
+    calor: clamp(score - 0.1),
+    territorio: clamp(score + 0.1),
+    ocorrencias: clamp(score - 0.4)
+  };
+}
+
+bairros.splice(0, bairros.length, ...officialBairroBase.map((bairro) => ({
+  ...bairro,
+  area: bairro.area || "N/D",
+  desc: `Bairro administrativo ${bairro.numero} no mapa oficial de Guarulhos, monitorado pelo ARKHIOS IVC com foco em risco climático urbano, drenagem, calor e vulnerabilidade territorial.`,
+  indicators: buildOfficialIndicators(bairro.score)
+})));
+
 const riskConfig = {
   low: { label: "Baixo risco", short: "Baixo", css: "low", colorVar: "var(--success)" },
-  med: { label: "Medio risco", short: "Medio", css: "med", colorVar: "var(--warning)" },
+  med: { label: "Médio risco", short: "Médio", css: "med", colorVar: "var(--warning)" },
   high: { label: "Alto risco", short: "Alto", css: "high", colorVar: "var(--danger)" }
 };
 
-const districtZones = [
-  {
-    className: "map-zone map-zone-main",
-    d: "M66 642 L91 558 L137 506 L139 421 L235 354 L337 326 L382 384 L524 359 L566 272 L657 160 L704 86 L804 38 L865 182 L845 314 L913 391 L826 428 L759 519 L702 592 L618 599 L541 641 L462 674 L385 726 L303 773 L246 843 L175 902 L106 959 L75 893 L88 803 Z"
-  },
-  {
-    className: "map-zone map-zone-dutra",
-    d: "M358 714 L462 671 L544 640 L619 596 L702 591 L758 516 L829 428 L911 389 L895 536 L813 570 L838 669 L743 704 L782 813 L675 855 L575 802 L452 810 L363 770 Z"
-  }
-];
+const districtZones = [];
 
 let currentFilter = "all";
 let selectedBairroId = null;
@@ -329,6 +389,7 @@ function buildSidebar(list = getVisibleBairros()) {
     item.className = "bairro-item";
     item.dataset.id = bairro.id;
     item.innerHTML = `
+      <span class="bairro-map-number" aria-hidden="true">${bairro.numero}</span>
       <span class="risk-dot risk-${riskConfig[bairro.risco].css}" aria-hidden="true"></span>
       <span class="bairro-info">
         <span class="bairro-name">${bairro.nome}</span>
@@ -369,29 +430,30 @@ function buildMap() {
   group.innerHTML = "";
 
   bairros.forEach((bairro) => {
-    const markerSize = bairro.risco === "high" ? 34 : bairro.risco === "med" ? 29 : 25;
+    const markerSize = bairro.risco === "high" ? 8.5 : bairro.risco === "med" ? 7.5 : 6.5;
     const groupEl = document.createElementNS("http://www.w3.org/2000/svg", "g");
     groupEl.setAttribute("class", "bairro-svg-group");
     groupEl.setAttribute("data-id", bairro.id);
+    groupEl.setAttribute("data-map-number", String(bairro.numero));
     groupEl.setAttribute("role", "button");
     groupEl.setAttribute("tabindex", "0");
-    groupEl.setAttribute("aria-label", `${bairro.nome}, ${getRiskLabel(bairro.risco)}, score ${bairro.score.toFixed(1)}`);
+    groupEl.setAttribute("aria-label", `${bairro.numero} ${bairro.nome}, ${getRiskLabel(bairro.risco)}, score ${bairro.score.toFixed(1)}`);
     groupEl.style.color = getRiskColor(bairro.risco);
 
     const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
-    title.textContent = `${bairro.nome}: ${getRiskLabel(bairro.risco)} (${bairro.score.toFixed(1)})`;
+    title.textContent = `${bairro.numero} - ${bairro.nome}: ${getRiskLabel(bairro.risco)} (${bairro.score.toFixed(1)})`;
 
     const hit = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     hit.setAttribute("class", "bairro-hit-area");
     hit.setAttribute("cx", bairro.coords.x);
     hit.setAttribute("cy", bairro.coords.y);
-    hit.setAttribute("r", markerSize + 20);
+    hit.setAttribute("r", 18);
 
     const halo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     halo.setAttribute("class", "bairro-marker-halo");
     halo.setAttribute("cx", bairro.coords.x);
     halo.setAttribute("cy", bairro.coords.y);
-    halo.setAttribute("r", markerSize + 16);
+    halo.setAttribute("r", markerSize + 10);
 
     const marker = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     marker.setAttribute("class", "bairro-marker");
@@ -403,19 +465,19 @@ function buildMap() {
     core.setAttribute("class", "bairro-marker-core");
     core.setAttribute("cx", bairro.coords.x);
     core.setAttribute("cy", bairro.coords.y);
-    core.setAttribute("r", Math.max(markerSize - 13, 9));
+    core.setAttribute("r", 2.7);
 
     const score = document.createElementNS("http://www.w3.org/2000/svg", "text");
     score.setAttribute("class", "bairro-marker-score");
     score.setAttribute("x", bairro.coords.x);
     score.setAttribute("y", bairro.coords.y + 1);
-    score.textContent = Math.round(bairro.score);
+    score.textContent = bairro.numero;
 
     const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     label.setAttribute("class", "bairro-marker-label");
     label.setAttribute("x", bairro.coords.x);
-    label.setAttribute("y", bairro.coords.y + markerSize + 28);
-    label.textContent = bairro.nome.length > 12 ? bairro.nome.split(" ")[0] : bairro.nome;
+    label.setAttribute("y", bairro.coords.y - 14);
+    label.textContent = `${bairro.numero} ${bairro.nome.length > 13 ? bairro.nome.split(" ")[0] : bairro.nome}`;
 
     groupEl.append(title, hit, halo, marker, core, score, label);
     groupEl.addEventListener("mouseenter", (event) => {
